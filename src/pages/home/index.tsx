@@ -11,19 +11,21 @@ interface Props {
 }
 
 interface State {
-    banner: Array<Record<string, any>>
+    banner: Array<Record<string, any>>,
+    channel: Array<Record<string, any>>,
 }
 
 interface CarouselProps {
-    imageList?: Array<Record<string, any>>
+    banner?: Array<Record<string, any>>,
+
 }
 
 const Carousel = (props: CarouselProps) => {
-    let {imageList} = props
+    let {banner} = props
     return <div className="swiper-container">
         <div className="swiper-wrapper">
             {
-                imageList && imageList.map(({url, id}) => {
+                banner && banner.map(({url, id}) => {
                     return <img key={id} className="swiper-slide" src={url} alt=""/>
                 })
             }
@@ -31,16 +33,34 @@ const Carousel = (props: CarouselProps) => {
         <div className="swiper-pagination"></div>
     </div>
 }
+interface ChannelProps {
+    channel?: Array<Record<string, any>>,
+
+}
+const Channel = (props:ChannelProps) =>{
+    let {channel} = props
+    return <div className="home-channel">
+        {
+            channel && channel.map(({id,name,iconUrl})=>{
+                return <div className="channel-item" key={id}>
+                    <img src={iconUrl} alt=""/>
+                    <p>{name}</p>
+                </div>
+            })
+        }
+    </div>
+}
 export default class Home extends React.Component<Props, State> {
     state = {
-        banner: []
+        banner: [],
+        channel:[]
     }
     public async componentWillMount(): Promise<any> {
         try {
             let initData: any = await getHome()
-            let {banner} = initData
+            let {banner,channel} = initData
             this.setState({
-                banner
+                banner, channel
             },()=>{
                 new Swiper('.swiper-container', {
                     // direction: 'vertical',//竖向轮播
@@ -60,11 +80,13 @@ export default class Home extends React.Component<Props, State> {
     }
 
     public render(): React.ReactNode {
-        let {banner} = this.state
-        console.log(banner);
+        let {banner,channel} = this.state
+        console.log('banner',banner);
+        console.log('channel',channel);
         return <div className="home-body">
             <SearchBar placeholder="Search" maxLength={8}/>
-            <Carousel imageList={banner}></Carousel>
+            <Carousel banner={banner}></Carousel>
+            <Channel channel={channel}></Channel>
         </div>
     }
 }

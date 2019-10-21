@@ -7,6 +7,7 @@
 .home-body{
   width: 100%;
   height: 100%;
+  background: #f2f2f2;
   .CarouselSwiper {
     width: 100%;
     height: 150px;
@@ -23,9 +24,27 @@
 }
 .swiper-container{
   width: 100%;
+  height: 230px;
   img{
     display: inline-block;
     width: 100%;
+  }
+}
+
+.home-channel{
+  margin-top: 10px;
+  padding: 10px 0;
+  background: #fff;
+  .channel-item{
+    display: inline-block;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+    img{
+      width: 20px;
+      height: 20px;
+    }
   }
 }
 
