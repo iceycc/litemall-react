@@ -4,6 +4,8 @@ Litemall-React
 litemall-react是一款react+typescript开源的在线商场应用程序。是基于[litemall](https://github.com/linlinjava/litemall)基础上进行开发，litemall包含了Spring Boot后端 + Vue管理员前端 + 微信小程序用户前端 + Vue用户移动端感兴趣的同学可以自行研究部署，Flutter_Mall基本上包含了litemall中小程序的功能。<br>
 
 
+. [Api](https://linlinjava.gitbook.io/litemall/api)
+
 litemall-react功能 (开发计划)
 ----------
 - [ ] 首页<br> 
@@ -18,6 +20,10 @@ litemall-react功能 (开发计划)
 - [ ] 购物下单<br>
 - [ ] 订单列表、订单详情<br>
 - [ ] 地址、收藏、足迹、意见反馈<br>
+
+
+
+
 
 项目截图
 ------------------
@@ -36,7 +42,7 @@ litemall-react功能 (开发计划)
 | ------------- |:-------------:| 
 | [swipe](https://github.com/best-flutter/flutter_swiper)     |轮播图 |
 
-Flutter学习资料
+React学习资料
 ----------------
 [react官方文档](https://react.docschina.org/)<br>
 

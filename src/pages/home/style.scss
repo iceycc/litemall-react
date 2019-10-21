@@ -47,4 +47,35 @@
     }
   }
 }
+.home-coupon-list{
+  padding: 15px;
+  margin-top: 10px;
+  background: #fff;
+  .coupon-list-title{
+    margin-bottom: 10px;
+  }
+  .home-coupon-item{
+    border: 1px solid red;
+    padding-left: 15px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+  }
+  .coupon-item-money{
+    display: flex;
+    margin-bottom: 10px;
+    >p,h2{
+      flex: 1;
+    }
+    p{
+
+      color: #f44;
+      font-size: 24px;
+      i{
+        font-size: 50%;
+      }
+    }
+  }
+
+}
 
