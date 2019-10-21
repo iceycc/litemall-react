@@ -1,0 +1,5 @@
+declare module 'react-swipe'
+declare module 'swiper'
+declare module 'reactjs-swiper'
+declare module 'swiper/js/swiper.min'
+declare module 'swiper/css/swiper.min.css'
