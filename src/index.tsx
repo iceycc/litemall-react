@@ -3,7 +3,6 @@ import App from './App';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
-// import Logger from 'src/components/logger'
 const root =  document.getElementById('root') as HTMLElement
 
 const render = (Component:any) =>{

@@ -6,8 +6,9 @@ import Swiper from 'swiper/js/swiper.min'
 import 'swiper/css/swiper.min.css'
 import PropTypes from 'prop-types'
 import { ThemeContext } from '../../App'
+import LimTabBar from 'src/components/LimTabBar'
 interface Props {
-
+    [propName:string]:any
 }
 
 interface State {
@@ -117,7 +118,7 @@ class BrandList extends React.Component {
     }
 }
 
-export default class Home extends React.Component<Props, State> {
+ class Home extends React.Component<Props, State> {
     state = {
         banner: [],
         channel: [],
@@ -158,6 +159,8 @@ export default class Home extends React.Component<Props, State> {
             <Channel channel={channel} />
             <CouponList couponList={couponList} />
             <BrandList />
+            <button onClick={()=>{this.props.history.push('/order')}}>跳转</button>
         </div>
     }
 }
+export default LimTabBar(Home)

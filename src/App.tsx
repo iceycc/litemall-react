@@ -3,7 +3,9 @@ import { HashRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import routers from './router/index'
 import './App.scss';
 import 'antd-mobile/dist/antd-mobile.css';  // or 'antd-mobile/dist/antd-mobile.less'
-const Store = { // 模拟全局仓库
+import Logger from 'src/components/logger' // 自己写的logger高级组件
+
+const Store = { // 模拟Context全局仓库
     theme: 'dark',
     toggle: () => { }, //向上下文设定一个回调方法
 }
@@ -17,10 +19,12 @@ class App extends React.Component {
                 <React.Suspense fallback={<div />}>
                     <Switch>
                         <Redirect exact={true} from='/' to='/home' />
-                        <ThemeContext.Provider value={this.state}>
+                        {/* 新的Context */}
+                        <ThemeContext.Provider value={this.state}> 
                             {
                                 routers && routers.map((item, ind) => {
                                     return <Route exact={item.exact} key={ind} path={item.path} render={(location) => {
+                                        console.log(location)
                                         return <item.component {...location} />
                                     }} />
                                 })
@@ -34,4 +38,4 @@ class App extends React.Component {
     }
 }
 
-export default App;
+export default Logger(App);
