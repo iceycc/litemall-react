@@ -14,6 +14,7 @@ interface State {
     banner: Array<Record<string, any>>,
     channel: Array<Record<string, any>>,
     couponList: Array<Record<string, any>>,
+    brandList: Array<Record<string, any>>,
 }
 
 type ListType = {
@@ -71,21 +72,25 @@ const CouponList = (props:ListType) =>{
         }
     </div>
 }
+const BrandList = ()=>{
+    return <div></div>
+}
 export default class Home extends React.Component<Props, State> {
     state = {
         banner: [],
         channel: [],
         couponList: [],
+        brandList: []
     }
 
     public async componentWillMount(): Promise<any> {
         try {
             let initData: any = await getHome()
-            let {banner, channel,couponList} = initData
+            let {banner, channel,couponList,brandList} = initData
             this.setState({
-                banner, channel,couponList
+                banner, channel,couponList,brandList
             }, () => {
-                new Swiper('.swiper-container', {
+                new Swiper('.swiBrandListper-container', {
                     // direction: 'vertical',//竖向轮播
                     loop: true,//无缝轮播
                     speed: 300,
@@ -103,15 +108,17 @@ export default class Home extends React.Component<Props, State> {
     }
 
     public render(): React.ReactNode {
-        let {banner, channel, couponList} = this.state
+        let {banner, channel, couponList,brandList} = this.state
         console.log('banner', banner);
         console.log('channel', channel);
         console.log('couponList', couponList);
+        console.log('brandList', brandList);
         return <div className="home-body">
             <SearchBar placeholder="搜索" maxLength={8}/>
             <Carousel banner={banner}/>
             <Channel channel={channel}/>
             <CouponList couponList={couponList}/>
+            <BrandList/>
         </div>
     }
 }

@@ -33,6 +33,11 @@ litemall-react功能 (开发计划)
 ------------------
 >src
 >>api(接口地址)<br>
+>>assets(静态资源)：图片，公共style文件<br>
+>>components(组件)<br>
+>>pages(页面)<br>
+>>router(路由)<br>
+>>utils(工具类)<br>
 
 
 
