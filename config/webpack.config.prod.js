@@ -1,5 +1,5 @@
 'use strict';
-
+const webpackConfig =require('./webpack.config.base')
 const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
@@ -38,6 +38,7 @@ if (env.stringified['process.env'].NODE_ENV !== '"production"') {
 
 // Note: defined here because it will be used more than once.
 const cssFilename = 'static/css/[name].[contenthash:8].css';
+
 
 // ExtractTextPlugin expects the build output to be flat.
 // (See https://github.com/webpack-contrib/extract-text-webpack-plugin/issues/27)
@@ -103,10 +104,10 @@ module.exports = {
       '.jsx',
     ],
     alias: {
-
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
+      ...webpackConfig.alias
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).

@@ -3,7 +3,6 @@ import {HashRouter as Router,Switch,Route,Redirect} from 'react-router-dom'
 import routers from './router/index'
 import './App.scss';
 import 'antd-mobile/dist/antd-mobile.css';  // or 'antd-mobile/dist/antd-mobile.less'
-
 class App extends React.Component {
     public render() {
         return (
