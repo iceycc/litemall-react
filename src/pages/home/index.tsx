@@ -5,7 +5,7 @@ import {SearchBar} from 'antd-mobile';
 // import ReactSwiper from 'reactjs-swiper';
 import Swiper from 'swiper/js/swiper.min'
 import 'swiper/css/swiper.min.css'
-
+import PropTypes from 'prop-types'
 interface Props {
 
 }
@@ -31,7 +31,7 @@ const Carousel = (props: ListType) => {
                 })
             }
         </div>
-        <div className="swiper-pagination"></div>
+        <div className="swiper-pagination"/>
     </div>
 }
 
@@ -82,7 +82,19 @@ export default class Home extends React.Component<Props, State> {
         couponList: [],
         brandList: []
     }
+    // 声明Context对象属性
+    static childContextTypes = {
+        propA: PropTypes.string,
+        methodA: PropTypes.func
+    }
 
+    // 返回Context对象，方法名是约定好的
+    getChildContext () {
+        return {
+            propA: 'propA',
+            methodA: () => 'methodA'
+        }
+    }
     public async componentWillMount(): Promise<any> {
         try {
             let initData: any = await getHome()
