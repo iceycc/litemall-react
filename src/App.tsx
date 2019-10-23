@@ -12,8 +12,10 @@ class App extends React.Component {
                     <Switch>
                         <Redirect exact={true} from='/' to='/home'/>
                         {
-                            routers && routers.map((item,index)=>{
-                                return <Route exact={item.exact} key={index} component={item.component}/>
+                            routers && routers.map((item,ind)=>{
+                                return <Route exact={item.exact} key={ind} path={item.path} render={(location)=>{
+                                    return <item.component {...location}/>
+                                }}/>
                             })
                         }
                     </Switch>
