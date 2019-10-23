@@ -1,11 +1,11 @@
 import * as React from 'react';
 import './style.scss'
-import {getHome} from '../../api'
-import {SearchBar} from 'antd-mobile';
-// import ReactSwiper from 'reactjs-swiper';
+import { getHome } from '../../api'
+import { SearchBar } from 'antd-mobile';
 import Swiper from 'swiper/js/swiper.min'
 import 'swiper/css/swiper.min.css'
 import PropTypes from 'prop-types'
+import { ThemeContext } from '../../App'
 interface Props {
 
 }
@@ -21,60 +21,102 @@ type ListType = {
     [Key in keyof State]?: State[Key]
 }
 
-const Carousel = (props: ListType) => {
-    let {banner} = props
-    return <div className="swiper-container">
-        <div className="swiper-wrapper">
-            {
-                banner && banner.map(({url, id}) => {
-                    return <img key={id} className="swiper-slide" src={url} alt=""/>
-                })
-            }
+/**
+ * banner模块
+ */
+class Carousel extends React.Component<ListType> {
+    componentDidMount() {
+        this.initSwiper()
+    }
+    initSwiper = () => {
+        new Swiper('.swiper-container', {
+            // direction: 'vertical',//竖向轮播
+            loop: true,//无缝轮播
+            speed: 300,
+            autoplay: {
+                delay: 3000
+            },
+            pagination: {//小圆点分页
+                el: '.swiper-pagination',
+            },
+        })
+    }
+    public render(): React.ReactNode {
+        let { banner } = this.props
+        return <div className="swiper-container">
+            <div className="swiper-wrapper">
+                {
+                    banner && banner.map(({ url, id }) => {
+                        return <img key={id} className="swiper-slide" src={url} alt="" />
+                    })
+                }
+            </div>
+            <div className="swiper-pagination" />
         </div>
-        <div className="swiper-pagination"/>
-    </div>
+    }
 }
-
-const Channel = (props: ListType) => {
-    let {channel} = props
+/**
+ * 渠道模块组件
+ * @param props 
+ */
+// React.memo() 和 PureComponent 很相似，它帮助我们控制何时重新渲染组件。
+const Channel = React.memo((props: ListType) => {
+    let { channel } = props
     return <div className="home-channel">
         {
-            channel && channel.map(({id, name, iconUrl}) => {
+            channel && channel.map(({ id, name, iconUrl }) => {
                 return <div className="channel-item" key={id}>
-                    <img src={iconUrl} alt=""/>
+                    <img src={iconUrl} alt="" />
                     <p>{name}</p>
                 </div>
             })
         }
     </div>
-}
-const CouponList = (props:ListType) =>{
-    let {couponList} = props
-    return <div className="home-coupon-list">
-        <p className="coupon-list-title">优惠卷</p>
+})
+/**
+ * 优惠卷组件
+ * @param props 
+ */
+const CouponList = (props: ListType): any => {
+    let { couponList } = props
+    return <ThemeContext.Consumer>
         {
-            couponList && couponList.map(({id,discount,desc,tag,days,name})=>{
-                return <div className="home-coupon-item" key={id}>
-                    {/*days: 10*/}
-                    {/*desc: "全场通用"*/}
-                    {/*discount: 5*/}
-                    {/*id: 1*/}
-                    {/*min: 99*/}
-                    {/*name: "限时满减券"*/}
-                    {/*tag: "无限制"*/}
-                    <div className="coupon-item-money">
-                        <p><i>¥</i> <span>{discount}</span> <span>元</span></p>
-                        <h2>{name}</h2>
-                    </div>
-                    <p><span>{desc}</span> - <span>{tag}</span> - 有效期: <span>{days}</span></p>
+            (ctx) => {
+                console.log(ctx.theme)
+                return <div className="home-coupon-list">
+                    <p className="coupon-list-title">优惠卷</p>
+                    {
+                        couponList && couponList.map(({ id, discount, desc, tag, days, name }) => {
+                            return <div className="home-coupon-item" key={id}>
+                                <div className="coupon-item-money">
+                                    <p><i>¥</i> <span>{discount}</span> <span>元</span></p>
+                                    <h2>{name}</h2>
+                                </div>
+                                <p><span>{desc}</span> - <span>{tag}</span> - 有效期: <span>{days}</span></p>
+                            </div>
+                        })
+                    }
                 </div>
-            })
+            }
         }
-    </div>
+    </ThemeContext.Consumer>
+
 }
-const BrandList = ()=>{
-    return <div></div>
+/**
+ * 
+ */
+class BrandList extends React.Component {
+    static contextTypes = {
+        propA: PropTypes.string,
+        methodA: PropTypes.func
+    }
+    render(): React.ReactNode {
+        console.log(this.context.propA)
+        return <div>
+        </div>
+    }
 }
+
 export default class Home extends React.Component<Props, State> {
     state = {
         banner: [],
@@ -89,7 +131,7 @@ export default class Home extends React.Component<Props, State> {
     }
 
     // 返回Context对象，方法名是约定好的
-    getChildContext () {
+    getChildContext() {
         return {
             propA: 'propA',
             methodA: () => 'methodA'
@@ -98,21 +140,9 @@ export default class Home extends React.Component<Props, State> {
     public async componentWillMount(): Promise<any> {
         try {
             let initData: any = await getHome()
-            let {banner, channel,couponList,brandList} = initData
+            let { banner, channel, couponList, brandList } = initData
             this.setState({
-                banner, channel,couponList,brandList
-            }, () => {
-                new Swiper('.swiBrandListper-container', {
-                    // direction: 'vertical',//竖向轮播
-                    loop: true,//无缝轮播
-                    speed: 300,
-                    autoplay: {
-                        delay: 3000
-                    },
-                    pagination: {//小圆点分页
-                        el: '.swiper-pagination',
-                    },
-                })
+                banner, channel, couponList, brandList
             })
         } catch (e) {
             console.log(e);
@@ -120,17 +150,14 @@ export default class Home extends React.Component<Props, State> {
     }
 
     public render(): React.ReactNode {
-        let {banner, channel, couponList,brandList} = this.state
-        console.log('banner', banner);
-        console.log('channel', channel);
-        console.log('couponList', couponList);
+        let { banner, channel, couponList, brandList } = this.state
         console.log('brandList', brandList);
         return <div className="home-body">
-            <SearchBar placeholder="搜索" maxLength={8}/>
-            <Carousel banner={banner}/>
-            <Channel channel={channel}/>
-            <CouponList couponList={couponList}/>
-            <BrandList/>
+            <SearchBar placeholder="搜索" maxLength={8} />
+            {banner && banner.length > 0 ? <Carousel banner={banner} /> : null}
+            <Channel channel={channel} />
+            <CouponList couponList={couponList} />
+            <BrandList />
         </div>
     }
 }
