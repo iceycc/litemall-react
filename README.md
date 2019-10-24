@@ -27,7 +27,7 @@ litemall-react功能 (开发计划)
 
 项目截图
 ------------------
-![首页](https://github.com/youxinLu/mall/blob/master/screenshots/Screenshot_20190924_100618_com.example.mall.jpg)
+![首页](source/page-images/home.jpeg)
 
 项目结构
 ------------------
