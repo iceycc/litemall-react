@@ -1,9 +1,11 @@
 import * as React from 'react';
+import LimTabBar from 'src/components/LimTabBar'
 
-export default class Order extends React.Component<any,any>{
+class Order extends React.Component<any,any>{
     public render(): React.ReactNode {
         return <div>
-            order
+            My
         </div>;
     }
 }
+export default LimTabBar('Tab3',Order)

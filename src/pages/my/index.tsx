@@ -1,11 +1,11 @@
 import * as React from 'react';
 import LimTabBar from 'src/components/LimTabBar'
 
-class Items extends React.Component<any,any>{
+class My extends React.Component<any,any>{
     public render(): React.ReactNode {
         return <div>
-            Items
+            My
         </div>;
     }
 }
-export default LimTabBar('Tab2',Items)
+export default LimTabBar('Tab4',My)

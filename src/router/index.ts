@@ -13,4 +13,17 @@ export default [
         name:'home',
         path:'/home',
     },
+    {
+        component: React.lazy(() => import('../pages/items')),
+        exact: true,
+        name:'items',
+        path:'/items',
+    },
+
+    {
+        component: React.lazy(() => import('../pages/my')),
+        exact: true,
+        name:'my',
+        path:'/my',
+    },
 ]

@@ -4,7 +4,7 @@ import { getHome } from '../../api'
 import { SearchBar } from 'antd-mobile';
 import Swiper from 'swiper/js/swiper.min'
 import 'swiper/css/swiper.min.css'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import { ThemeContext } from '../../App'
 import LimTabBar from 'src/components/LimTabBar'
 interface Props {
@@ -25,7 +25,7 @@ type ListType = {
 /**
  * banner模块
  */
-class Carousel extends React.Component<ListType> {
+class Carousel extends React.Component<ListType,any> {
     componentDidMount() {
         this.initSwiper()
     }
@@ -58,7 +58,7 @@ class Carousel extends React.Component<ListType> {
 }
 /**
  * 渠道模块组件
- * @param props 
+ * @param props
  */
 // React.memo() 和 PureComponent 很相似，它帮助我们控制何时重新渲染组件。
 const Channel = React.memo((props: ListType) => {
@@ -76,7 +76,7 @@ const Channel = React.memo((props: ListType) => {
 })
 /**
  * 优惠卷组件
- * @param props 
+ * @param props
  */
 const CouponList = (props: ListType): any => {
     let { couponList } = props
@@ -104,15 +104,15 @@ const CouponList = (props: ListType): any => {
 
 }
 /**
- * 
+ *
  */
 class BrandList extends React.Component {
-    static contextTypes = {
-        propA: PropTypes.string,
-        methodA: PropTypes.func
-    }
+    // static contextTypes = {
+    //     propA: PropTypes.string,
+    //     methodA: PropTypes.func
+    // }
     render(): React.ReactNode {
-        console.log(this.context.propA)
+        // console.log(this.context.propA)
         return <div>
         </div>
     }
@@ -125,19 +125,19 @@ class BrandList extends React.Component {
         couponList: [],
         brandList: []
     }
-    // 声明Context对象属性
-    static childContextTypes = {
-        propA: PropTypes.string,
-        methodA: PropTypes.func
-    }
-
-    // 返回Context对象，方法名是约定好的
-    getChildContext() {
-        return {
-            propA: 'propA',
-            methodA: () => 'methodA'
-        }
-    }
+    // // 声明Context对象属性
+    // static childContextTypes = {
+    //     propA: PropTypes.string,
+    //     methodA: PropTypes.func
+    // }
+    //
+    // // 返回Context对象，方法名是约定好的
+    // getChildContext() {
+    //     return {
+    //         propA: 'propA',
+    //         methodA: () => 'methodA'
+    //     }
+    // }
     public async componentWillMount(): Promise<any> {
         try {
             let initData: any = await getHome()
@@ -159,8 +159,9 @@ class BrandList extends React.Component {
             <Channel channel={channel} />
             <CouponList couponList={couponList} />
             <BrandList />
-            <button onClick={()=>{this.props.history.push('/order')}}>跳转</button>
+            {/*<button onClick={()=>{this.props.history.push('/order')}}>跳转</button>*/}
+
         </div>
     }
 }
-export default LimTabBar(Home)
+export default LimTabBar('Tab1',Home)
