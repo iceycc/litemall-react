@@ -36,7 +36,7 @@ function LimTabBar(type: StateType['selectedTab'], Comp: any) {
                     this.props.history.push('/items')
                     break;
                 case Tabs[2]:
-                    this.props.history.push('/order')
+                    this.props.history.push('/order-cart')
                     break;
                 case Tabs[3]:
                     this.props.history.push('/my')

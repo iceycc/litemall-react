@@ -7,15 +7,16 @@ import 'swiper/css/swiper.min.css'
 // import PropTypes from 'prop-types'
 import { ThemeContext } from '../../App'
 import LimTabBar from 'src/components/LimTabBar'
-interface Props {
-    [propName:string]:any
-}
+// interface Props {
+//     [propName:string]:any
+// }
 
 interface State {
     banner: Array<Record<string, any>>,
     channel: Array<Record<string, any>>,
     couponList: Array<Record<string, any>>,
     brandList: Array<Record<string, any>>,
+    goItemsCategory:any
 }
 
 type ListType = {
@@ -62,11 +63,12 @@ class Carousel extends React.Component<ListType,any> {
  */
 // React.memo() 和 PureComponent 很相似，它帮助我们控制何时重新渲染组件。
 const Channel = React.memo((props: ListType) => {
-    let { channel } = props
+    let { channel, goItemsCategory} = props
+    // /items/category
     return <div className="home-channel">
         {
             channel && channel.map(({ id, name, iconUrl }) => {
-                return <div className="channel-item" key={id}>
+                return <div className="channel-item" key={id} onClick={()=>{goItemsCategory(id)}}>
                     <img src={iconUrl} alt="" />
                     <p>{name}</p>
                 </div>
@@ -118,7 +120,7 @@ class BrandList extends React.Component {
     }
 }
 
- class Home extends React.Component<Props, State> {
+ class Home extends React.Component<any, any> {
     state = {
         banner: [],
         channel: [],
@@ -156,11 +158,10 @@ class BrandList extends React.Component {
         return <div className="home-body">
             <SearchBar placeholder="搜索" maxLength={8} />
             {banner && banner.length > 0 ? <Carousel banner={banner} /> : null}
-            <Channel channel={channel} />
+            <Channel channel={channel} goItemsCategory={(id:number) => {this.props.history.push('/items-category?id='+id)}}/>
             <CouponList couponList={couponList} />
             <BrandList />
             {/*<button onClick={()=>{this.props.history.push('/order')}}>跳转</button>*/}
-
         </div>
     }
 }

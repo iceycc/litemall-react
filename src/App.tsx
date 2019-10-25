@@ -3,7 +3,7 @@ import { HashRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import routers from './router/index'
 import './App.scss';
 import 'antd-mobile/dist/antd-mobile.css';  // or 'antd-mobile/dist/antd-mobile.less'
-import Logger from 'src/components/logger' // 自己写的logger高级组件
+import Logger from 'src/components/Logger' // 自己写的logger高级组件
 
 const Store = { // 模拟Context全局仓库
     theme: 'dark',
@@ -24,7 +24,6 @@ class App extends React.Component {
                             {
                                 routers && routers.map((item, ind) => {
                                     return <Route exact={item.exact} key={ind} path={item.path} render={(location) => {
-                                        console.log(location)
                                         return <item.component {...location} />
                                     }} />
                                 })

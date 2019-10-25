@@ -1,7 +1,7 @@
 import * as React from 'react';
 import LimTabBar from 'src/components/LimTabBar'
 import { SearchBar  } from 'antd-mobile';
-import { catalogList } from '../../api/index';
+import { catalogList } from 'src/api/index';
 
 interface Props{
 
