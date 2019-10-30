@@ -1,12 +1,12 @@
-export function query() {
-    let url = window.location.href
+export function getQuery<T>() :T | null {
+    const url = window.location.href
     if (url.indexOf('?') == -1) return null
-    var arr1 = url.split("?");
-    var params = arr1[1].split("&");
-    var obj = {};//声明对象
-    for (var i = 0; i < params.length; i++) {
-        var param = params[i].split("=");
+    const arr1 = url.split("?");
+    const params = arr1[1].split("&");
+    let obj = {};//声明对象
+    for (let i = 0; i < params.length; i++) {
+        let param = params[i].split("=");
         obj[param[0]] = decodeURIComponent(param[1]);//为对象赋值
     }
-    return obj;
+    return (obj as T);
 }

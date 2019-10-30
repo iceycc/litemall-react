@@ -16,3 +16,12 @@ export function catalogList() {
         body: null,
     })
 }
+
+const CategoryUrl='wx/goods/category'; //分类目录全部分类数据接口
+export function getCategoryList<T>(data:object):Promise<T>{
+    return (request.get({
+        url: CategoryUrl,
+        body: data,
+    }) as Promise<T>)
+}
+

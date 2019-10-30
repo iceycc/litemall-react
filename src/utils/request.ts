@@ -6,14 +6,14 @@ type httpMethod = 'GET' | 'POST'
 interface InterRequestInit {
     method?: httpMethod,
     headers?: HeadersInit,
-    body?: BodyInit | null;
+    body?: any,
     credentials?: RequestCredentials,
     mode?: RequestMode,
 }
 
 interface InterCommonFetchOptions extends InterRequestInit {
     url: string,
-    body?: BodyInit | null,
+    body?: any,
     headers?: Record<string, string>,
     method?: httpMethod
 }
