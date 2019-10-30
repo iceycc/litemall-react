@@ -2,61 +2,27 @@ import * as React from 'react';
 import './style.scss'
 import { getHome } from '../../api'
 import { SearchBar } from 'antd-mobile';
-import Swiper from 'swiper/js/swiper.min'
-import 'swiper/css/swiper.min.css'
+
 // import PropTypes from 'prop-types'
 import { ThemeContext } from '../../App'
 import LimTabBar from 'src/components/LimTabBar'
+import {Carousel} from './com'
 // interface Props {
 //     [propName:string]:any
 // }
-
 interface State {
     banner: Array<Record<string, any>>,
     channel: Array<Record<string, any>>,
     couponList: Array<Record<string, any>>,
     brandList: Array<Record<string, any>>,
-    goItemsCategory:any
+    goItemsCategory(id:number):void 
 }
 
 type ListType = {
     [Key in keyof State]?: State[Key]
 }
 
-/**
- * banner模块
- */
-class Carousel extends React.Component<ListType,any> {
-    componentDidMount() {
-        this.initSwiper()
-    }
-    initSwiper = () => {
-        new Swiper('.swiper-container', {
-            // direction: 'vertical',//竖向轮播
-            loop: true,//无缝轮播
-            speed: 300,
-            autoplay: {
-                delay: 3000
-            },
-            pagination: {//小圆点分页
-                el: '.swiper-pagination',
-            },
-        })
-    }
-    public render(): React.ReactNode {
-        let { banner } = this.props
-        return <div className="swiper-container">
-            <div className="swiper-wrapper">
-                {
-                    banner && banner.map(({ url, id }) => {
-                        return <img key={id} className="swiper-slide" src={url} alt="" />
-                    })
-                }
-            </div>
-            <div className="swiper-pagination" />
-        </div>
-    }
-}
+
 /**
  * 渠道模块组件
  * @param props
@@ -68,7 +34,7 @@ const Channel = React.memo((props: ListType) => {
     return <div className="home-channel">
         {
             channel && channel.map(({ id, name, iconUrl }) => {
-                return <div className="channel-item" key={id} onClick={()=>{goItemsCategory(id)}}>
+                return <div className="channel-item" key={id} onClick={()=>{goItemsCategory && goItemsCategory(id)}}>
                     <img src={iconUrl} alt="" />
                     <p>{name}</p>
                 </div>
@@ -157,11 +123,10 @@ class BrandList extends React.Component {
         console.log('brandList', brandList);
         return <div className="home-body">
             <SearchBar placeholder="搜索" maxLength={8} />
-            {banner && banner.length > 0 ? <Carousel banner={banner} /> : null}
+            {banner && banner.length > 0 ? <Carousel list={banner} /> : null}
             <Channel channel={channel} goItemsCategory={(id:number) => {this.props.history.push('/items-category?id='+id)}}/>
             <CouponList couponList={couponList} />
             <BrandList />
-            {/*<button onClick={()=>{this.props.history.push('/order')}}>跳转</button>*/}
         </div>
     }
 }

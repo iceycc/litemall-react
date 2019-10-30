@@ -119,12 +119,12 @@ class Http implements IntertHttp {
             }
             const contentType: string = res.headers.get('Content-Type') || ''
             let {data} = await this.compilerHeader(contentType, res)
-            return data
-            // if (res.status >= 200 && res.status < 300) {
-            //     return this.compilerHeader(contentType, res)
-            // }
-            // const error = new Error(res.statusText);
-            // throw error;
+            // return data
+            if (res.status >= 200 && res.status < 300) {
+                return data
+            }
+            const error = new Error(res.statusText);
+            throw error;
         },e=>{
             delete this.queue[url] // 每次请求成功后 都删除队列里的路径
             if (Object.keys(this.queue).length === 0) {

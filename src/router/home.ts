@@ -3,7 +3,6 @@ export default [
     {
         component: React.lazy(() => import('../pages/home')),
         exact: true,
-        name:'home',
         path:'/home',
     },
 ]
