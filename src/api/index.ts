@@ -17,7 +17,7 @@ export function catalogList() {
     })
 }
 
-const CategoryUrl='wx/goods/category'; //分类目录全部分类数据接口
+const CategoryUrl='wx/goods/category'; // 分类顶部导航列表
 export function getCategoryList<T>(data:object):Promise<T>{
     return (request.get({
         url: CategoryUrl,
