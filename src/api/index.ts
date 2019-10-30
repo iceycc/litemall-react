@@ -25,3 +25,11 @@ export function getCategoryList<T>(data:object):Promise<T>{
     }) as Promise<T>)
 }
 
+const GoodsListUrl='wx/goods/list'; // 获取产品类别
+export function getGoodsList(data:object){
+    return request.get({
+        url: GoodsListUrl,
+        body: data,
+    })
+}
+
