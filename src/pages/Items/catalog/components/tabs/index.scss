@@ -1,0 +1,23 @@
+.tabsWrap{
+    width: 100%;
+    display: flex;
+    >div{
+        flex:1
+    }
+    .tabsLeft{
+        flex: 0 0 20%;
+        .tabli{
+            width: 100%;
+            text-align: center;
+            list-style: none;
+            padding: 10px 0;
+            border-bottom:1px solid #ccc;
+        }
+        .selected{
+            color: red;
+        }
+    }
+    // .tabsRight{
+    // }
+    
+}

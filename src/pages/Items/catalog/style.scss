@@ -1,0 +1,34 @@
+.itemContent {
+    width: 100%;
+    .ulList{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        >li{
+            list-style: none;
+        }
+    }
+
+    .inline {
+        width: 30% !important;
+        margin: 10px 2% 2% 0;
+    }
+    .placeholder {
+        text-align: center;
+        width: 100%;
+    }
+    .descItem{
+        width: 100%;
+        text-align: center;
+        margin: 10px 0;
+    }
+    .imgWrap{
+        width: 100%;
+        height: 40px;
+        padding: 0 4px;
+        >img{
+            width: 100%;
+            height: 100%;
+        }
+    }
+}

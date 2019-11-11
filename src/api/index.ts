@@ -25,6 +25,14 @@ export function getCategoryList<T>(data:object):Promise<T>{
     }) as Promise<T>)
 }
 
+const CateItemUrl='wx/catalog/current'; // 分类类目列表
+export function getCateItemList<T>(data:object):Promise<T>{
+    return (request.get({
+        url: CateItemUrl,
+        body: data,
+    }) as Promise<T>)
+}
+
 const GoodsListUrl='wx/goods/list'; // 获取产品类别
 export function getGoodsList(data:object){
     return request.get({
