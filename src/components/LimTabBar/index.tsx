@@ -12,8 +12,6 @@ interface StateType {
 }
 
 function LimTabBar(type: StateType['selectedTab'], Comp: any) {
-
-
     return class extends React.Component<any, StateType> {
         state = {
             selectedTab: type,
@@ -120,5 +118,4 @@ function LimTabBar(type: StateType['selectedTab'], Comp: any) {
         }
     }
 }
-
 export default LimTabBar

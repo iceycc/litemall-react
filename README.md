@@ -47,6 +47,14 @@ litemall-react功能 (开发计划)
 | ------------- |:-------------:| 
 | [swipe](https://github.com/best-flutter/flutter_swiper)     |轮播图 |
 
+##
+后台启动
+- nginx启动： /usr/local/nginx/sbin
+- 项目地址：/usr/local/project
+- 查看磁盘文件大小  find / -size +100M |xargs ls -lh 
+- [错误1](https://blog.csdn.net/Wuhaotian1996/article/details/84875723)
+- [错误2](https://blog.csdn.net/wang_magento/article/details/93205584)
+
 React学习资料
 ----------------
 [react官方文档](https://react.docschina.org/)<br>
