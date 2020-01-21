@@ -49,7 +49,11 @@ litemall-react功能 (开发计划)
 
 ##
 后台启动
-- nginx启动： /usr/local/nginx/sbin
+- nginx启动： /usr/local/nginx/sbin https://www.cnblogs.com/yeshaoxiang/p/8659708.html 
+  - systemctl restart nginx.service
+  - systemctl reload nginx.service
+  - nginx -s reload
+- 项目启动：nohup ./run.sh >/dev/null 2>&1&
 - 项目地址：/usr/local/project
 - 查看磁盘文件大小  find / -size +100M |xargs ls -lh 
 - [错误1](https://blog.csdn.net/Wuhaotian1996/article/details/84875723)
